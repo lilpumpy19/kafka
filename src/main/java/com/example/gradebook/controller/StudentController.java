@@ -13,6 +13,15 @@ import org.springframework.web.bind.annotation.*;
 @RequiredArgsConstructor
 public class StudentController {
     private final StudentService studentService;
+
+    @GetMapping("/getAllStudents")
+    public ResponseEntity<?> getAllStudents() {
+        try {
+            return ResponseEntity.ok(studentService.findAll());
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
     @GetMapping("/getStudentById")
     public ResponseEntity<?> getStudentById(@RequestParam int id) {
         try {
@@ -22,7 +31,7 @@ public class StudentController {
         }
 
     }
-    @GetMapping("/deleteStudentById")
+    @DeleteMapping("/deleteStudentById")
     public ResponseEntity<?> deleteStudentById(@RequestParam int id) {
         try {
             studentService.deleteById(id);
@@ -31,7 +40,7 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
-    @GetMapping("/addGrade")
+    @PostMapping("/addGrade")
     public ResponseEntity<?> addGrade(@RequestParam int id, @RequestParam int grade) {
         try {
             studentService.addGrade(id, grade);
