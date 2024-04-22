@@ -1,5 +1,7 @@
 package com.example.gradebook.entity;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.annotation.JsonManagedReference;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -26,11 +28,11 @@ public class Student {
 
     @JoinColumn(name = "group_id")
     @ManyToOne
+    @JsonManagedReference
     private Group group;
 
     @ElementCollection
     @CollectionTable(name = "student_grades", joinColumns = @JoinColumn(name = "student_id"))
-    @Column(name = "grades")
     private List<Integer> grades;
 
     public Student(String name, String surname) {
@@ -41,4 +43,6 @@ public class Student {
     public void addGrade(int grade) {
         grades.add(grade);
     }
+
+
 }

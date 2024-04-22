@@ -1,6 +1,7 @@
 package com.example.gradebook.service;
 
 import com.example.gradebook.dto.StudentDTO;
+import com.example.gradebook.entity.Group;
 import com.example.gradebook.entity.Student;
 import com.example.gradebook.repository.StudentRepository;
 import lombok.RequiredArgsConstructor;
@@ -13,6 +14,8 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class StudentServiceImpl implements StudentService {
     private final StudentRepository studentRepository;
+    private final GroupService groupService;
+
     @Override
     public Student findById(int id) {
         Optional<Student> optionalStudent = studentRepository.findById(id);
@@ -41,6 +44,18 @@ public class StudentServiceImpl implements StudentService {
     public List<Student> findAll() {
         return studentRepository.findAll();
     }
+
+    @Override
+    public void addGroupToStudent(int id, int groupId) {
+        Student student = findById(id);
+        Group group = groupService.findById(groupId);
+        if (!group.equals(student.getGroup())) {
+            student.setGroup(group);
+            studentRepository.save(student);
+        }
+    }
+
+
 
 
 }

@@ -15,5 +15,7 @@ public interface StudentService {
     void addStudent(StudentDTO student);
 
     List<Student> findAll();
+
+    void addGroupToStudent(int id, int groupId);
 }
 

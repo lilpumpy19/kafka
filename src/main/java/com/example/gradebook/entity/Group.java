@@ -1,5 +1,7 @@
 package com.example.gradebook.entity;
 
+import com.fasterxml.jackson.annotation.JsonBackReference;
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.Data;
 import lombok.RequiredArgsConstructor;
@@ -21,9 +23,15 @@ public class Group {
     private String name;
 
     @OneToMany(mappedBy = "group", cascade = CascadeType.ALL)
+    @JsonBackReference
     private List<Student> students;
+
+    public Group(String name) {
+        this.name = name;
+    }
 
     public void addStudent(Student student) {
         this.students.add(student);
     }
+
 }

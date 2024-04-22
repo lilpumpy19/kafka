@@ -59,4 +59,14 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
+
+    @PostMapping("/addGroupToStudent")
+    public ResponseEntity<?> addGroupToStudent(@RequestParam int id, @RequestParam int groupId) {
+        try {
+            studentService.addGroupToStudent(id, groupId);
+            return ResponseEntity.ok().build();
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }
