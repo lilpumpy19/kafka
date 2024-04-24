@@ -1,0 +1,29 @@
+version: '3'
+
+services:
+  app:
+    image: 'gradebook:latest'
+    build:
+      context: .
+    container_name: app
+    networks:
+      - docker-network
+    depends_on:
+      - db
+    ports:
+      - '8080:8080'
+    env_file:
+      - app.env
+
+  db:
+    image: 'postgres:16'
+    container_name: db
+    networks:
+      - docker-network
+    env_file:
+      - postgres.env
+
+
+networks:
+  docker-network:
+    driver: bridge
