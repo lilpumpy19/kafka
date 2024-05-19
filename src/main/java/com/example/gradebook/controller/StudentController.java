@@ -16,6 +16,7 @@ public class StudentController {
 
     @GetMapping("/getAllStudents")
     public ResponseEntity<?> getAllStudents() {
+        System.out.println("getAllStudents");
         try {
             return ResponseEntity.ok(studentService.findAll());
         }catch (RuntimeException ex){
@@ -24,6 +25,7 @@ public class StudentController {
     }
     @GetMapping("/getStudentById")
     public ResponseEntity<?> getStudentById(@RequestParam int id) {
+        System.out.println("getStudentById");
         try {
             return ResponseEntity.ok(studentService.findById(id));
         }catch (RuntimeException ex){
@@ -33,6 +35,7 @@ public class StudentController {
     }
     @DeleteMapping("/deleteStudentById")
     public ResponseEntity<?> deleteStudentById(@RequestParam int id) {
+        System.out.println("deleteStudentById");
         try {
             studentService.deleteById(id);
             return ResponseEntity.ok().build();
@@ -42,6 +45,7 @@ public class StudentController {
     }
     @PostMapping("/addGrade")
     public ResponseEntity<?> addGrade(@RequestParam int id, @RequestParam int grade) {
+        System.out.println("addGrade");
         try {
             studentService.addGrade(id, grade);
             return ResponseEntity.ok().build();
@@ -52,6 +56,7 @@ public class StudentController {
     }
     @PutMapping("/addStudent")
     public ResponseEntity<?> addStudent(@RequestBody StudentDTO student) {
+        System.out.println("addStudent");
         try {
             studentService.addStudent(student);
             return ResponseEntity.ok().build();
@@ -62,6 +67,7 @@ public class StudentController {
 
     @PostMapping("/addGroupToStudent")
     public ResponseEntity<?> addGroupToStudent(@RequestParam int id, @RequestParam int groupId) {
+        System.out.println("addGroupToStudent");
         try {
             studentService.addGroupToStudent(id, groupId);
             return ResponseEntity.ok().build();

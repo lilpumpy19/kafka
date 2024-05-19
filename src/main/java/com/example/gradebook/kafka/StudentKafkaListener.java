@@ -12,8 +12,11 @@ import org.springframework.stereotype.Component;
 public class StudentKafkaListener {
     private final StudentService studentService;
 
-    @KafkaListener(topics = {"students"})
+    @KafkaListener(topics = "${spring.kafka.topic.studentsTopic}",
+    groupId = "${spring.kafka.groupStudentId}",
+    containerFactory = "studentKafkaListenerContainerFactory")
     public void studentsListener(StudentDTO studentDTO) {
+        System.out.println("studentsListener");
         studentService.addStudent(studentDTO);
     }
 
