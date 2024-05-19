@@ -1,0 +1,6 @@
+kafka:
+  topic:
+    restaurant: student-topic
+
+server:
+  port: 8080
