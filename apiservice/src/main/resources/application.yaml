@@ -6,8 +6,8 @@ spring:
 
 kafka:
   topic:
-    restaurant: restaurant-topic
-    review: review-topic
+    studentsTopic: students-topic
+
 
 server:
   port: 8081

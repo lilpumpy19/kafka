@@ -1,5 +1,6 @@
 package com.example.apiservice.config;
 
+import com.example.apiservice.dto.StudentDTO;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
@@ -23,10 +24,10 @@ public class KafkaProducerConfig {
 
     @Bean
     public NewTopic studentsTopic(){
-        return new NewTopic("students", 1, (short) 1);
+        return new NewTopic("studentsTopic", 1, (short) 1);
     }
-
-    public ProducerFactory<String,Object> producerFactory(){
+    @Bean
+    public ProducerFactory<String, StudentDTO> producerFactory(){
         Map<String, Object> configMap = new HashMap();
         configMap.put(
                 ProducerConfig.BOOTSTRAP_SERVERS_CONFIG,
@@ -41,7 +42,8 @@ public class KafkaProducerConfig {
         return new DefaultKafkaProducerFactory<>(configMap);
     }
 
-    public KafkaTemplate<String,Object> kafkaTemplate(){
+    @Bean
+    public KafkaTemplate<String,StudentDTO> kafkaTemplate(){
         return new KafkaTemplate<>(producerFactory());
     }
 }
