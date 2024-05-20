@@ -41,6 +41,13 @@ public class StudentController {
         return response;
     }
 
+    @GetMapping("/getTopFiveStudentByGradesCount")
+    public ResponseEntity<List<Student>> getTopFiveStudentByGradesCount() {
+        ResponseEntity<List<Student>> response = new RestTemplate().exchange(url + "getTopFiveStudentByGradesCount",
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {});
+        return response;
+    }
+
 
 
 }
