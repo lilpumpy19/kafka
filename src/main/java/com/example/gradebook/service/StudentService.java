@@ -1,6 +1,6 @@
 package com.example.gradebook.service;
 
-import com.example.gradebook.dto.StudentDTO;
+import com.example.datainit.StudentDTO;
 import com.example.gradebook.entity.Student;
 
 import java.util.List;

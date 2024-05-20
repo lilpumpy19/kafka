@@ -1,7 +1,7 @@
 package com.example.gradebook.config;
 
 import com.example.gradebook.dto.GroupDTO;
-import com.example.gradebook.dto.StudentDTO;
+import com.example.datainit.StudentDTO;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.Configuration;
 

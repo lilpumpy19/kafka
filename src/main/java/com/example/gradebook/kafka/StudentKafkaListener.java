@@ -1,7 +1,7 @@
 package com.example.gradebook.kafka;
 
 
-import com.example.gradebook.dto.StudentDTO;
+import com.example.datainit.StudentDTO;
 import com.example.gradebook.service.StudentService;
 import lombok.RequiredArgsConstructor;
 import org.springframework.kafka.annotation.KafkaListener;
