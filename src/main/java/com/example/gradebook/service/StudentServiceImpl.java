@@ -55,7 +55,16 @@ public class StudentServiceImpl implements StudentService {
         }
     }
 
-
+    @Override
+    public List<Student> getTopFiveStudents() {
+        List<Student> students = findAll();
+        students.sort((o1, o2) -> {
+            double avgGrade1 = o1.getGrades().stream().mapToInt(Integer::intValue).average().orElse(0.0);
+            double avgGrade2 = o2.getGrades().stream().mapToInt(Integer::intValue).average().orElse(0.0);
+            return Double.compare(avgGrade2, avgGrade1);
+        });
+        return students.subList(0, Math.min(5, students.size()));
+    }
 
 
 }

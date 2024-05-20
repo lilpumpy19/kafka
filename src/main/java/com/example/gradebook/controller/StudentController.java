@@ -75,4 +75,14 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
+
+    @GetMapping("/getTopFiveStudents")
+    public ResponseEntity<?> getTopFiveStudents() {
+        System.out.println("getTopFiveStudents");
+        try {
+            return ResponseEntity.ok(studentService.getTopFiveStudents());
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }

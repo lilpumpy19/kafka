@@ -17,5 +17,7 @@ public interface StudentService {
     List<Student> findAll();
 
     void addGroupToStudent(int id, int groupId);
+
+    List<Student> getTopFiveStudents();
 }
 
