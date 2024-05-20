@@ -1,5 +1,6 @@
 package com.example.apiservice.controller;
 
+import com.example.datainit.Student;
 import com.example.datainit.StudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
@@ -31,6 +32,13 @@ public class StudentController {
         System.out.println(studentDTO.getName() + " " + studentDTO.getSurname());
         kafkaTemplate.send(studentsTopic, studentDTO);
         return ResponseEntity.ok("Student added successfully");
+    }
+
+    @GetMapping("/getTopFiveStudents")
+    public ResponseEntity<List<Student>> getTopFiveStudents() {
+        ResponseEntity<List<Student>> response = new RestTemplate().exchange(url + "getTopFiveStudents",
+                HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {});
+        return response;
     }
 
 
