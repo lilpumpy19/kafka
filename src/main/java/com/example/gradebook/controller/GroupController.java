@@ -51,4 +51,23 @@ public class GroupController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
+
+    @GetMapping("/getTopTreeGroupsByStudentsCount")
+    public ResponseEntity<?> getTopTreeGroupsByStudentsCount() {
+        try {
+            return ResponseEntity.ok(groupService.getTopTreeGroupsByStudentsCount());
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
+
+    @DeleteMapping("/deleteGroup")
+    public ResponseEntity<?> deleteGroup(@RequestParam int id) {
+        try {
+            groupService.deleteById(id);
+            return ResponseEntity.ok().build();
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }

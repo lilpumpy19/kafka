@@ -1,6 +1,7 @@
 package com.example.gradebook.service;
 
 import com.example.gradebook.dto.GroupDTO;
+
 import com.example.gradebook.entity.Group;
 import com.example.gradebook.entity.Student;
 import com.example.gradebook.repository.GroupRepository;
@@ -26,6 +27,7 @@ public class GroupServiceImpl implements GroupService {
         return group.getStudents();
     }
 
+
     @Override
     public Group findById(int id) {
         Optional<Group> optionalGroup = groupRepository.findById(id);
@@ -37,6 +39,22 @@ public class GroupServiceImpl implements GroupService {
         groupRepository.save(new Group(group.getName()));
     }
 
+    @Override
+    public List<Group> getTopTreeGroupsByStudentsCount() {
+        List<Group> groups = findAll();
+        groups.sort((g1, g2) -> g2.getStudents().size() - g1.getStudents().size());
+        return groups.subList(0, 3);
+    }
+
+    @Override
+    public void deleteById(int id) {
+        if (!groupRepository.existsById(id)) {
+            throw new RuntimeException("Group with ID " + id + " not found");
+        }else {
+            groupRepository.deleteById(id);
+        }
+
+    }
 
 
 }

@@ -15,4 +15,8 @@ public interface GroupService {
     List<Group> findAll();
 
     List<Student> getStudentsByGroupId(int id);
+
+    List<Group> getTopTreeGroupsByStudentsCount();
+
+    void deleteById(int id);
 }
