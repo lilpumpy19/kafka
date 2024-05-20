@@ -85,4 +85,14 @@ public class StudentController {
             return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
         }
     }
+
+    @GetMapping("/getTopFiveStudentByGradesCount")
+    public ResponseEntity<?> getTopFiveStudentByGradesCount() {
+        System.out.println("getTopFiveStudentByGradesCount");
+        try {
+            return ResponseEntity.ok(studentService.getTopFiveStudentByGradesCount());
+        }catch (RuntimeException ex){
+            return ResponseEntity.status(HttpStatus.BAD_REQUEST).body(ex.getMessage());
+        }
+    }
 }

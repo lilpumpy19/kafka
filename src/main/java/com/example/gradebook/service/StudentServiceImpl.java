@@ -66,5 +66,16 @@ public class StudentServiceImpl implements StudentService {
         return students.subList(0, Math.min(5, students.size()));
     }
 
+    @Override
+    public List<Student> getTopFiveStudentByGradesCount() {
+        List<Student> students = findAll();
+        students.sort((o1, o2) -> {
+            int count1 = o1.getGrades().size();
+            int count2 = o2.getGrades().size();
+            return Integer.compare(count2, count1);
+        });
+        return students.subList(0, Math.min(5, students.size()));
+    }
+
 
 }
