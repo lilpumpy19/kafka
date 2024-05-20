@@ -1,6 +1,6 @@
 package com.example.apiservice.controller;
 
-import com.example.apiservice.dto.StudentDTO;
+import com.example.datainit.StudentDTO;
 import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -9,10 +9,7 @@ import org.springframework.core.ParameterizedTypeReference;
 import org.springframework.http.HttpMethod;
 import org.springframework.http.ResponseEntity;
 import org.springframework.kafka.core.KafkaTemplate;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 import org.springframework.web.client.RestTemplate;
 
 import java.util.List;
@@ -30,7 +27,8 @@ public class StudentController {
     private String url = "http://localhost:8080/api/student/";
 
     @PostMapping("/addStudent")
-    public ResponseEntity<String> addStudent(StudentDTO studentDTO) {
+    public ResponseEntity<String> addStudent(@RequestBody StudentDTO studentDTO) {
+        System.out.println(studentDTO.getName() + " " + studentDTO.getSurname());
         kafkaTemplate.send(studentsTopic, studentDTO);
         return ResponseEntity.ok("Student added successfully");
     }

@@ -1,6 +1,6 @@
 package com.example.apiservice.config;
 
-import com.example.apiservice.dto.StudentDTO;
+import com.example.datainit.StudentDTO;
 import org.apache.kafka.clients.admin.NewTopic;
 import org.apache.kafka.clients.producer.ProducerConfig;
 import org.apache.kafka.common.serialization.StringSerializer;
