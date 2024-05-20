@@ -24,6 +24,8 @@ public class StudentController {
     private KafkaTemplate<String, StudentDTO> kafkaTemplate;
     @Value("${kafka.topic.studentsTopic}")
     private String studentsTopic;
+    @Autowired
+    private RestTemplate restTemplate;
 
     private String url = "http://localhost:8080/api/student/";
 
@@ -36,14 +38,14 @@ public class StudentController {
 
     @GetMapping("/getTopFiveStudents")
     public ResponseEntity<List<Student>> getTopFiveStudents() {
-        ResponseEntity<List<Student>> response = new RestTemplate().exchange(url + "getTopFiveStudents",
+        ResponseEntity<List<Student>> response = restTemplate.exchange(url + "getTopFiveStudents",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {});
         return response;
     }
 
     @GetMapping("/getTopFiveStudentByGradesCount")
     public ResponseEntity<List<Student>> getTopFiveStudentByGradesCount() {
-        ResponseEntity<List<Student>> response = new RestTemplate().exchange(url + "getTopFiveStudentByGradesCount",
+        ResponseEntity<List<Student>> response = restTemplate.exchange(url + "getTopFiveStudentByGradesCount",
                 HttpMethod.GET, null, new ParameterizedTypeReference<List<Student>>() {});
         return response;
     }
